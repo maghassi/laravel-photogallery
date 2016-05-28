@@ -12,10 +12,12 @@ use DB;
 
 class GalleryController extends Controller
 {
+    private $table = 'galleries';
+    
     public function index()
     {
-      
-        return view('gallery.index');
+        $galleries = DB::table($this->table)->get();
+        return view('gallery.index', compact('galleries'));
     }
     
     public function create()
@@ -43,7 +45,7 @@ class GalleryController extends Controller
         }
         
          //Insert into DB
-        DB::table('galleries')->insert(
+        DB::table($this->table)->insert(
             [
               'name' => $name,
               'description' => $description,
@@ -58,6 +60,10 @@ class GalleryController extends Controller
     
     public function show($id)
     {
-        die($id);
+        //
+        $gallery = DB::table($this->table)->where('id', $id)->first();
+        $photos = DB::table('photos')->where('gallery_id', $id)->get();
+        
+        return view('/gallery/show', compact('gallery', 'photos'));
     }
 }

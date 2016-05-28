@@ -19,6 +19,7 @@ class CreatePhotosTable extends Migration
             $table->string('location');
             $table->string('image');
             $table->integer('owner_id');
+            $table->integer('gallery_id');
             $table->timestamps();
         });
     }
