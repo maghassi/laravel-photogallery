@@ -6,7 +6,9 @@
                 <a href="/">Back to galleries</a>
               <h1>{{$gallery->name}}</h1>
               <p class="lead">{{$gallery->description}}</p>
-              <a class = "button button-upload" href="/photo/create/{{$gallery->id}}">Upload New Photo</a>
+              @if(Auth::check())
+                 <a class = "button button-upload" href="/photo/create/{{$gallery->id}}">Upload New Photo</a>
+              @endif
             </div>
             
           </div>

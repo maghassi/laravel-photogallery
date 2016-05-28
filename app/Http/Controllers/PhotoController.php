@@ -8,6 +8,8 @@ use App\Http\Requests;
 
 use DB;
 
+use Auth;
+
 class PhotoController extends Controller
 {
     
@@ -15,6 +17,10 @@ class PhotoController extends Controller
     
     public function create($gallery_id)
     {
+        if(!Auth::check())
+        {
+            return \Redirect::route('gallery.show', array('id'=>$gallery_id));
+        }
         //render create view
         return view('photo.create', compact('gallery_id'));
     }

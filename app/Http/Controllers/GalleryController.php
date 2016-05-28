@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 use DB;
 
+use Auth;
+
 class GalleryController extends Controller
 {
     private $table = 'galleries';
@@ -22,6 +24,10 @@ class GalleryController extends Controller
     
     public function create()
     {
+        if(!Auth::check())
+        {
+            return \Redirect::route('gallery.index');
+        }
         return view('gallery.create');
     }
     
