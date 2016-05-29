@@ -38,10 +38,10 @@
             </div>
           </div>
           
-          @if(Session::has('message'))
+          @if(Session::has('msg'))
           
              <div class = "alert alert-info">
-                 {{Session::get('message')}}
+                 {{Session::get('msg')}}
              </div>
           
           @endif

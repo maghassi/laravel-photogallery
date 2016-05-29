@@ -61,7 +61,8 @@ class GalleryController extends Controller
         );
         
         //Redirect
-        return \Redirect::route('gallery.index')->with('messsage', 'Gallery Created');
+        session()->flash('msg','Gallery created');
+        return \Redirect::route('gallery.index');
     }
     
     public function show($id)
